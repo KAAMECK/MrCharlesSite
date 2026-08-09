@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 390" role="img" aria-labelledby="title desc">
+  <title id="title">Usemi Vizuri Consulting</title>
+  <desc id="desc">Monogramme UV vert de Usemi Vizuri Consulting</desc>
+  <g fill="#075b43" transform="skewX(-10 260 160)">
+    <path d="M74 44h78l-31 134c-6 27 2 40 24 40 21 0 35-14 42-44l30-130h78l-34 147c-16 70-59 105-128 105-67 0-98-34-82-103L74 44Z"/>
+    <path d="M215 44h82l24 132L411 44h86L319 294h-78L215 44Z"/>
+  </g>
+  <text x="260" y="332" text-anchor="middle" fill="#111814" font-family="Arial, Helvetica, sans-serif" font-size="42" font-style="italic" font-weight="800" letter-spacing="1">USEMI VIZURI</text>
+  <text x="260" y="370" text-anchor="middle" fill="#075b43" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="6">CONSULTING</text>
+</svg>
