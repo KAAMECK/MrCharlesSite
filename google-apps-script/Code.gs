@@ -8,6 +8,15 @@ const UV_CONFIG = Object.freeze({
   headerRow: 4
 });
 
+function autoriserEtInitialiser() {
+  const spreadsheet = SpreadsheetApp.openById(UV_CONFIG.spreadsheetId);
+  getOrCreateDemandSheet_(spreadsheet);
+  getOrCreateActivitySheet_(spreadsheet);
+  getOrCreateNewsletterSheet_(spreadsheet);
+  MailApp.getRemainingDailyQuota();
+
+  return "Autorisation réussie : le registre, le Dashboard et les notifications sont prêts.";
+}
 function doGet() {
   return jsonResponse_({ ok: true, service: "Usemi Vizuri Consulting - suivi du site" });
 }

@@ -7,11 +7,12 @@ Le formulaire ouvre WhatsApp avec le nom, l’adresse e-mail, le besoin et le ch
 3. Remplacer le contenu de Code.gs par celui de ce dossier.
 4. L’identifiant du Google Sheet est déjà renseigné dans Code.gs.
 5. Ouvrir les paramètres du projet, activer l’affichage du fichier manifeste, puis remplacer appsscript.json par celui de ce dossier.
-6. Cliquer sur Déployer > Nouveau déploiement > Application Web. Si une version existe déjà, créer un nouveau déploiement/version avec le Code.gs actualisé.
-7. Choisir Exécuter en tant que : Moi et Qui a accès : Tout le monde.
-8. Autoriser Google Sheets et l’envoi d’e-mails avec le compte propriétaire du registre.
-9. Copier l’URL terminant par /exec.
-10. Dans config.js, remplacer apiUrl: "#" par cette URL.
+6. Dans la barre supérieure d’Apps Script, sélectionner la fonction **autoriserEtInitialiser**, puis cliquer sur **Exécuter**.
+7. Lorsque Google affiche **Autorisation requise**, cliquer sur **Examiner les autorisations**, choisir le compte propriétaire, puis accepter l’accès au classeur et à l’envoi des notifications.
+8. Cliquer sur Déployer > Nouveau déploiement > Application Web. Si une version existe déjà, créer un nouveau déploiement/version avec le Code.gs actualisé.
+9. Choisir Exécuter en tant que : Moi et Qui a accès : Tout le monde.
+10. Copier l’URL terminant par /exec.
+11. Dans config.js, remplacer apiUrl: "#" par cette URL.
 
 Après l’activation :
 
