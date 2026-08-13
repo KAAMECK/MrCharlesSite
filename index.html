@@ -184,15 +184,15 @@
       <div class="container contact-layout">
         <div class="contact-copy reveal">
           <p class="eyebrow light">Parlons de votre projet</p>
-          <h2 id="contact-title">Un besoin précis ?<br><em>Écrivez-nous.</em></h2>
-          <p>Présentez brièvement votre besoin. Votre demande sera enregistrée pour le suivi et reprise automatiquement dans un message WhatsApp prêt à envoyer.</p>
+          <h2 id="contact-title">Un besoin ?</h2>
+          <p>Contactez-nous en remplissant ce formulaire. Présentez brièvement votre besoin : votre demande sera enregistrée pour le suivi et reprise automatiquement dans un message WhatsApp prêt à envoyer.</p>
           <div class="contact-details">
             <div><span>Email</span><a href="mailto:usemivizuriconsulting@gmail.com">usemivizuriconsulting@gmail.com</a></div>
             <div><span>WhatsApp</span><a href="https://wa.me/243848392035" target="_blank" rel="noopener noreferrer">+243 848 392 035</a></div>
           </div>
         </div>
         <form class="contact-form reveal" id="contact-form" method="post">
-          <div class="form-heading"><span>Votre demande</span><b>3 informations</b></div>
+          <div class="form-heading"><span>Votre demande</span></div>
           <label for="contact-email">Adresse e-mail
             <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.com" required>
           </label>
@@ -202,12 +202,16 @@
           <label for="contact-need">Description brève du besoin
             <textarea id="contact-need" name="besoin" rows="6" maxlength="1200" placeholder="Expliquez-nous en quelques lignes ce que vous souhaitez réaliser…" required></textarea>
           </label>
+          <label class="newsletter-consent" for="contact-newsletter">
+            <input id="contact-newsletter" name="actualites" type="checkbox" value="oui">
+            <span>Je souhaite recevoir les prochaines analyses et actualités de Usemi Vizuri Consulting.</span>
+          </label>
           <label class="form-trap" aria-hidden="true">Ne pas remplir
             <input name="website" type="text" tabindex="-1" autocomplete="off">
           </label>
           <button class="button button-primary submit-button" type="submit">
             <span class="submit-button-loader" aria-hidden="true"></span>
-            <span class="submit-button-label">Envoyer et ouvrir WhatsApp</span>
+            <span class="submit-button-label">Soumettre</span>
           </button>
           <p class="form-note">Vos informations sont transmises au registre de suivi et à l’équipe Usemi Vizuri Consulting.</p>
           <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
@@ -264,18 +268,6 @@
         <a href="#">Actualités</a>
       </div>
 
-      <div class="newsletter">
-        <h2>Restons connectés</h2>
-        <p>Recevez nos prochaines analyses et actualités.</p>
-        <form action="#" method="post">
-          <label class="sr-only" for="newsletter-email">Votre adresse email</label>
-          <div class="newsletter-field">
-            <input id="newsletter-email" type="email" name="email" placeholder="Votre email" required>
-            <button type="submit" aria-label="S’inscrire">→</button>
-          </div>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
     </div>
     <div class="footer-bottom">
       <div class="container">

@@ -49,6 +49,51 @@ window.addEventListener('scroll', () => {
   backToTop.classList.toggle('is-visible', window.scrollY > 700);
 }, { passive: true });
 
+const serviceUrl = window.UV_CONFIG?.apiUrl;
+const visitorSessionId = (() => {
+  try {
+    const existing = sessionStorage.getItem('uv-session-id');
+    if (existing) return existing;
+    const generated = crypto.randomUUID?.() || ('uv-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+    sessionStorage.setItem('uv-session-id', generated);
+    return generated;
+  } catch {
+    return 'uv-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+  }
+})();
+
+if (serviceUrl && serviceUrl !== '#') {
+  let visitAlreadyTracked = false;
+  try {
+    visitAlreadyTracked = sessionStorage.getItem('uv-visit-tracked') === '1';
+  } catch {
+    visitAlreadyTracked = false;
+  }
+
+  if (!visitAlreadyTracked) {
+    const visitPayload = new URLSearchParams({
+      action: 'visit',
+      sessionId: visitorSessionId,
+      page: window.location.pathname || '/',
+      referrer: document.referrer || 'Accès direct',
+      device: window.matchMedia('(max-width: 700px)').matches ? 'Mobile' : 'Bureau'
+    });
+
+    fetch(serviceUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      body: visitPayload
+    }).catch(() => {});
+
+    try {
+      sessionStorage.setItem('uv-visit-tracked', '1');
+    } catch {
+      // Le suivi reste non bloquant si le stockage du navigateur est indisponible.
+    }
+  }
+}
+
 const contactForm = document.querySelector('#contact-form');
 const contactFormStatus = document.querySelector('#contact-form-status');
 const submissionReceipt = document.querySelector('#submission-receipt');
@@ -67,7 +112,8 @@ contactForm?.addEventListener('submit', (event) => {
   const email = String(data.get('email') || '').trim();
   const besoin = String(data.get('besoin') || '').trim();
   const website = String(data.get('website') || '').trim();
-  const apiUrl = window.UV_CONFIG?.apiUrl;
+  const actualites = data.get('actualites') === 'oui' ? 'Oui' : 'Non';
+  const apiUrl = serviceUrl;
   const whatsappNumber = window.UV_CONFIG?.whatsappNumber || '243848392035';
   const button = contactForm.querySelector('button[type="submit"]');
   const buttonLabel = button.querySelector('.submit-button-label');
@@ -77,7 +123,8 @@ contactForm?.addEventListener('submit', (event) => {
     'Je vous contacte depuis votre site.',
     'Nom complet : ' + nom,
     'Adresse e-mail : ' + email,
-    'Description brève du besoin : ' + besoin
+    'Description brève du besoin : ' + besoin,
+    'Recevoir les analyses et actualités : ' + actualites
   ].join('\n');
   const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
 
@@ -94,12 +141,24 @@ contactForm?.addEventListener('submit', (event) => {
     contactFormStatus.textContent = 'WhatsApp a été préparé. Le registre Google Sheets doit encore être autorisé par son compte propriétaire.';
     button.disabled = false;
     button.classList.remove('is-loading');
-    buttonLabel.textContent = 'Envoyer et ouvrir WhatsApp';
+    buttonLabel.textContent = 'Soumettre';
     contactForm.removeAttribute('aria-busy');
     return;
   }
 
-  const payload = new URLSearchParams({ nom, email, besoin, source: 'Site web', website });
+  const payload = new URLSearchParams({
+    action: 'contact',
+    nom,
+    email,
+    besoin,
+    actualites,
+    sessionId: visitorSessionId,
+    page: window.location.pathname || '/',
+    referrer: document.referrer || 'Accès direct',
+    device: window.matchMedia('(max-width: 700px)').matches ? 'Mobile' : 'Bureau',
+    source: 'Site web',
+    website
+  });
   fetch(apiUrl, { method: 'POST', body: payload })
     .then((response) => response.json())
     .then((result) => {
@@ -122,15 +181,9 @@ contactForm?.addEventListener('submit', (event) => {
     .finally(() => {
       button.disabled = false;
       button.classList.remove('is-loading');
-      buttonLabel.textContent = 'Envoyer et ouvrir WhatsApp';
+      buttonLabel.textContent = 'Soumettre';
       contactForm.removeAttribute('aria-busy');
     });
-});
-
-const newsletter = document.querySelector('.newsletter form');
-newsletter.addEventListener('submit', (event) => {
-  event.preventDefault();
-  newsletter.querySelector('.form-status').textContent = 'Merci. L’inscription en ligne sera activée prochainement.';
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
