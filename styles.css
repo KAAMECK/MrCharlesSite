@@ -257,7 +257,7 @@ h1 em, h2 em {
 
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
@@ -325,25 +325,133 @@ h1 em, h2 em {
 .about-badge { position: absolute; left: -34px; bottom: 34px; display: grid; min-width: 210px; padding: 24px 28px; background: var(--green); color: var(--white); }
 .about-badge strong { font-size: 2.7rem; font-style: italic; line-height: 1; }
 .about-badge span { margin-top: 8px; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.yebela {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(15, 138, 96, .34), transparent 30%),
+    linear-gradient(135deg, #08110d, #101c17 58%, #06100c);
+  color: var(--white);
+}
+.yebela-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(54px, 9vw, 130px); }
+.yebela-intro { position: relative; min-height: 500px; display: flex; flex-direction: column; justify-content: center; }
+.yebela-mark {
+  position: absolute;
+  left: -45px;
+  top: 50%;
+  color: rgba(117, 199, 168, .08);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(20rem, 38vw, 36rem);
+  font-weight: 700;
+  line-height: .7;
+  transform: translateY(-46%);
+}
+.yebela-intro h2 { position: relative; margin: 0; font-size: clamp(4.3rem, 10vw, 8rem); line-height: .9; letter-spacing: -.07em; }
+.yebela-tagline { position: relative; max-width: 560px; margin: 28px 0 0; color: #83d8b7; font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.45rem, 2.7vw, 2.25rem); line-height: 1.25; }
+.yebela-copy > p { color: rgba(255, 255, 255, .72); }
+.yebela-focus { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0; }
+.yebela-focus span { padding: 9px 13px; border: 1px solid rgba(131, 216, 183, .35); color: #a6e5ca; font-size: .67rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.yebela-date { margin-bottom: 32px; padding-left: 18px; border-left: 3px solid var(--green-bright); }
+.yebela-date strong { color: var(--white); }
+.yebela-copy .button { width: auto; }
 
 .clients { background: var(--white); }
 .client-shell { position: relative; display: grid; grid-template-columns: 46px 1fr 46px; align-items: center; gap: 18px; }
 .client-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc(25% - 14px); gap: 18px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .client-track::-webkit-scrollbar { display: none; }
-.client-logo {
-  min-height: 160px;
-  display: grid;
-  place-items: center;
+.client-card {
+  position: relative;
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 26px 22px;
+  overflow: hidden;
   scroll-snap-align: start;
-  border: 1px solid var(--line);
-  background: var(--cream);
-  color: var(--green);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 3.2rem;
-  font-weight: 700;
+  isolation: isolate;
+  background-color: var(--green);
+  background-position: center;
+  background-size: cover;
+  color: var(--white);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
 }
+.client-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: linear-gradient(180deg, rgba(3,13,10,.08) 25%, rgba(3,13,10,.92) 100%);
+  transition: background .25s ease;
+}
+.client-card:hover::before { background: linear-gradient(180deg, rgba(7,91,67,.1), rgba(3,13,10,.95)); }
+.client-card span { font-family: "Playfair Display", Georgia, serif; font-size: 1.38rem; font-weight: 700; line-height: 1.2; }
+.client-card strong { color: #a6e5ca; font-size: .62rem; letter-spacing: .09em; text-transform: uppercase; }
+.client-card-one { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 68% center; }
+.client-card-two { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 45% center; }
+.client-card-three { background-image: linear-gradient(135deg, rgba(7,91,67,.05), rgba(5,14,11,.15)), url("assets/hero-usemi-vizuri.png"); background-position: 78% center; }
+.client-card-four { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 30% center; }
+.client-card-five { background-image: linear-gradient(135deg, rgba(15,138,96,.08), rgba(5,14,11,.18)), url("assets/hero-usemi-vizuri.png"); background-position: 58% center; }
+.client-card-six { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 88% center; }
 .client-arrow { width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--green); cursor: pointer; transition: background .2s, color .2s; }
 .client-arrow:hover { background: var(--green); color: var(--white); }
+
+.contact-section {
+  padding: 112px 0;
+  color: rgba(255,255,255,.74);
+  background:
+    radial-gradient(circle at 12% 22%, rgba(15,138,96,.3), transparent 30%),
+    #050e0a;
+}
+.contact-layout { display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, .78fr); gap: clamp(55px, 8vw, 105px); align-items: start; }
+.contact-copy h2 { margin: 0; color: var(--white); font-size: clamp(2.7rem, 5vw, 5rem); line-height: 1; letter-spacing: -.05em; }
+.contact-copy > p:not(.eyebrow) { max-width: 610px; margin-top: 28px; font-size: 1.02rem; }
+.contact-details { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 46px; }
+.contact-details span { display: block; margin-bottom: 7px; color: #83d8b7; font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.contact-details a { color: rgba(255,255,255,.9); font-size: .86rem; overflow-wrap: anywhere; }
+.contact-details a:hover { color: #83d8b7; }
+
+.contact-form { padding: 36px; color: var(--ink); background: var(--white); box-shadow: 0 30px 90px rgba(0,0,0,.28); }
+.form-heading { display: flex; justify-content: space-between; gap: 18px; margin-bottom: 27px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.form-heading span { color: var(--green); font-size: 1.12rem; font-weight: 800; }
+.form-heading b { color: var(--muted); font-size: .7rem; font-weight: 600; }
+.contact-form label { display: block; margin-bottom: 18px; color: var(--ink); font-size: .75rem; font-weight: 800; }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-top: 7px;
+  padding: 13px 14px;
+  color: var(--ink);
+  background: #f7faf8;
+  border: 1px solid #d5ded9;
+  border-radius: 0;
+  outline: none;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 400;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.contact-form textarea { min-height: 145px; resize: vertical; }
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--green-bright); box-shadow: 0 0 0 3px rgba(15,138,96,.12); }
+.form-trap { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; }
+.submit-button { position: relative; width: 100%; gap: 10px; border: 0; cursor: pointer; }
+.submit-button-loader { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.4); border-top-color: var(--white); border-radius: 50%; animation: submit-spin .75s linear infinite; }
+.submit-button.is-loading .submit-button-loader { display: inline-block; }
+.contact-form button:disabled { cursor: wait; opacity: .82; transform: none; }
+.form-note { margin: 13px 0 0; color: var(--muted); font-size: .68rem; text-align: center; }
+.contact-form-status { min-height: 24px; margin: 8px 0 0; color: var(--green); font-size: .76rem; text-align: center; }
+.contact-form-status.is-error { color: #b42318; }
+.submission-receipt { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 15px; margin-top: 22px; padding: 21px; text-align: left; background: #effcf5; border: 1px solid #a6e3c3; }
+.submission-receipt[hidden] { display: none; }
+.receipt-check { display: grid; width: 40px; height: 40px; place-items: center; color: var(--white); background: #14804a; border-radius: 50%; font-size: 1.2rem; font-weight: 900; }
+.receipt-eyebrow { color: #127447; font-size: .65rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.receipt-content h3 { margin: 4px 0 5px; color: var(--ink); font-size: 1rem; }
+.receipt-content > p { margin: 0; color: var(--muted); font-size: .72rem; }
+.receipt-details { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 9px; margin: 16px 0 0; }
+.receipt-details div { min-width: 0; padding-top: 9px; border-top: 1px solid rgba(20,128,74,.2); }
+.receipt-details dt { color: #527064; font-size: .59rem; font-weight: 800; text-transform: uppercase; }
+.receipt-details dd { margin: 4px 0 0; color: #0d5633; overflow-wrap: anywhere; font-size: .73rem; font-weight: 800; }
+@keyframes submit-spin { to { transform: rotate(360deg); } }
 
 .media-cta { padding: 84px 0; background: var(--green-bright); }
 .media-card {
@@ -369,7 +477,7 @@ h1 em, h2 em {
 .footer-contact ul { margin: 0; padding: 0; list-style: none; }
 .footer-contact li { margin-bottom: 17px; }
 .footer-contact li span { display: block; color: rgba(255,255,255,.38); font-size: .61rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.footer-contact li a, .footer-contact li strong { font-size: .78rem; font-weight: 500; }
+.footer-contact li a, .footer-contact li strong { font-size: .78rem; font-weight: 500; overflow-wrap: anywhere; }
 .footer-links { display: flex; flex-direction: column; align-items: flex-start; }
 .footer-links a { margin-bottom: 10px; color: rgba(255,255,255,.58); font-size: .77rem; }
 .footer-links a:hover { color: #7bd4b1; }
@@ -412,8 +520,12 @@ h1 em, h2 em {
   .manifesto { grid-template-columns: 1fr; }
   .manifesto-panel { min-height: 560px; }
   .about-grid { grid-template-columns: 1fr; }
+  .yebela-grid { grid-template-columns: 1fr; }
+  .yebela-intro { min-height: 360px; }
   .about-copy { max-width: 760px; }
   .about-visual { min-height: 520px; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-copy { max-width: 760px; }
   .footer-grid { grid-template-columns: 1.3fr 1fr 1fr; }
   .newsletter { grid-column: 1 / -1; max-width: 520px; }
 }
@@ -444,11 +556,19 @@ h1 em, h2 em {
   .about-facts { grid-template-columns: 1fr; }
   .about-visual { min-height: 420px; background-position: 64% center; }
   .about-badge { left: 15px; right: 15px; bottom: 15px; min-width: 0; }
+  .yebela-grid { gap: 28px; }
+  .yebela-intro { min-height: 300px; }
+  .yebela-mark { left: -20px; font-size: 20rem; }
+  .yebela-copy .button { width: 100%; }
   .clients .section-heading { margin-bottom: 38px; }
   .client-shell { grid-template-columns: 1fr; }
   .client-arrow { display: none; }
   .client-track { grid-auto-columns: 78%; }
-  .client-logo { min-height: 145px; }
+  .client-card { min-height: 320px; }
+  .contact-section { padding: 82px 0; }
+  .contact-layout { gap: 48px; }
+  .contact-form { padding: 27px 20px; }
+  .receipt-details { grid-template-columns: 1fr; }
   .media-cta { padding: 42px 0; }
   .media-card { padding: 60px 22px; }
   .footer-grid { grid-template-columns: 1fr; gap: 42px; padding-block: 60px; }
