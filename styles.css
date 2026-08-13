@@ -159,7 +159,7 @@ button, input { font: inherit; }
   align-items: center;
   isolation: isolate;
   overflow: hidden;
-  background: var(--black) url("assets/hero-usemi-vizuri.png") center / cover no-repeat;
+  background: var(--black) url("assets/uv-accueil.png") 74% 38% / cover no-repeat;
   color: var(--white);
 }
 
@@ -318,7 +318,7 @@ h1 em, h2 em {
 .about-visual {
   position: relative;
   min-height: 590px;
-  background: var(--black) url("assets/hero-usemi-vizuri.png") 70% center / cover no-repeat;
+  background: var(--black) url("assets/collaboration-07.png") center / cover no-repeat;
   box-shadow: var(--shadow);
 }
 .about-visual::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,20,14,.52), transparent 58%); }
@@ -386,12 +386,13 @@ h1 em, h2 em {
 .client-card:hover::before { background: linear-gradient(180deg, rgba(7,91,67,.1), rgba(3,13,10,.95)); }
 .client-card span { font-family: "Playfair Display", Georgia, serif; font-size: 1.38rem; font-weight: 700; line-height: 1.2; }
 .client-card strong { color: #a6e5ca; font-size: .62rem; letter-spacing: .09em; text-transform: uppercase; }
-.client-card-one { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 68% center; }
-.client-card-two { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 45% center; }
-.client-card-three { background-image: linear-gradient(135deg, rgba(7,91,67,.05), rgba(5,14,11,.15)), url("assets/hero-usemi-vizuri.png"); background-position: 78% center; }
-.client-card-four { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 30% center; }
-.client-card-five { background-image: linear-gradient(135deg, rgba(15,138,96,.08), rgba(5,14,11,.18)), url("assets/hero-usemi-vizuri.png"); background-position: 58% center; }
-.client-card-six { background-image: url("assets/hero-usemi-vizuri.png"); background-position: 88% center; }
+.client-card-one { background-image: url("assets/collaboration-01.png"); }
+.client-card-two { background-image: url("assets/collaboration-02.png"); }
+.client-card-three { background-image: url("assets/collaboration-03.png"); }
+.client-card-four { background-image: url("assets/collaboration-04.png"); }
+.client-card-five { background-image: url("assets/collaboration-05.png"); }
+.client-card-six { background-image: url("assets/collaboration-06.png"); }
+.client-card-seven { background-image: url("assets/collaboration-07.png"); }
 .client-arrow { width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--green); cursor: pointer; transition: background .2s, color .2s; }
 .client-arrow:hover { background: var(--green); color: var(--white); }
 
