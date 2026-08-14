@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contactez Usemi Vizuri Consulting et présentez brièvement votre projet ou votre besoin.">
+  <meta name="theme-color" content="#0b0f0d">
+  <title>Contact — Usemi Vizuri Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo-usemi-vizuri.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Usemi Vizuri Consulting — Accueil">
+        <span class="brand-logo"><img src="assets/logo-usemi-vizuri.svg" alt="Logo Usemi Vizuri Consulting"></span>
+        <span class="brand-copy">
+          <strong>Usemi Vizuri</strong>
+          <small>Consulting</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <a href="a-propos.html">À propos</a>
+        <a href="services.html">Services</a>
+        <a href="approche.html">Approche</a>
+        <a href="yebela.html">Yebela</a>
+        <a href="realisations.html">Réalisations</a>
+        <a class="nav-cta" href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero" style="--page-image: url('assets/uv-accueil.png')" aria-labelledby="page-title">
+      <div class="container"><p class="eyebrow light">Parlons de votre projet</p><h1 id="page-title">Contact</h1><p>Présentez-nous votre besoin. Votre demande sera enregistrée pour le suivi et reprise dans un message WhatsApp prêt à envoyer.</p></div>
+    </section>    <section class="contact-section inner-contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-layout">
+        <div class="contact-copy reveal">
+          <p class="eyebrow light">Parlons de votre projet</p>
+          <h2 id="contact-title">Un besoin ?</h2>
+          <p>Contactez-nous en remplissant ce formulaire. Présentez brièvement votre besoin : votre demande sera enregistrée pour le suivi et reprise automatiquement dans un message WhatsApp prêt à envoyer.</p>
+          <div class="contact-details">
+            <div><span>Email</span><a href="mailto:usemivizuriconsulting@gmail.com">usemivizuriconsulting@gmail.com</a></div>
+            <div><span>WhatsApp</span><a href="https://wa.me/243848392035" target="_blank" rel="noopener noreferrer">+243 848 392 035</a></div>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contact-form" method="post">
+          <div class="form-heading"><span>Votre demande</span></div>
+          <label for="contact-email">Adresse e-mail
+            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.com" required>
+          </label>
+          <label for="contact-name">Nom complet
+            <input id="contact-name" name="nom" type="text" autocomplete="name" placeholder="Votre nom et prénom" maxlength="120" required>
+          </label>
+          <label for="contact-need">Description brève du besoin
+            <textarea id="contact-need" name="besoin" rows="6" maxlength="1200" placeholder="Expliquez-nous en quelques lignes ce que vous souhaitez réaliser…" required></textarea>
+          </label>
+          <label class="newsletter-consent" for="contact-newsletter">
+            <input id="contact-newsletter" name="actualites" type="checkbox" value="oui">
+            <span>Je souhaite recevoir les prochaines analyses et actualités de Usemi Vizuri Consulting.</span>
+          </label>
+          <label class="form-trap" aria-hidden="true">Ne pas remplir
+            <input name="website" type="text" tabindex="-1" autocomplete="off">
+          </label>
+          <button class="button button-primary submit-button" type="submit">
+            <span class="submit-button-loader" aria-hidden="true"></span>
+            <span class="submit-button-label">Soumettre</span>
+          </button>
+          <p class="form-note">Vos informations sont transmises au registre de suivi et à l’équipe Usemi Vizuri Consulting.</p>
+          <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
+          <section class="submission-receipt" id="submission-receipt" aria-live="polite" hidden>
+            <div class="receipt-check" aria-hidden="true">✓</div>
+            <div class="receipt-content">
+              <span class="receipt-eyebrow">Accusé d’enregistrement UV Consulting</span>
+              <h3>Demande enregistrée avec succès</h3>
+              <p>Un message WhatsApp personnalisé a également été préparé avec vos informations.</p>
+              <dl class="receipt-details">
+                <div><dt>Référence</dt><dd id="receipt-reference">#</dd></div>
+                <div><dt>Date</dt><dd id="receipt-date">#</dd></div>
+                <div><dt>Heure de Kinshasa</dt><dd id="receipt-time">#</dd></div>
+              </dl>
+            </div>
+          </section>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand footer-logo" href="index.html">
+          <span class="brand-logo"><img src="assets/logo-usemi-vizuri.svg" alt="Logo Usemi Vizuri Consulting"></span>
+          <span class="brand-copy"><strong>Usemi Vizuri</strong><small>Consulting</small></span>
+        </a>
+        <p>Cabinet de conseil<br>Communication stratégique & influence<br>Branding • Digital • Prise de parole en public</p>
+        <div class="social-links" aria-label="Réseaux sociaux">
+          <a href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Usemi Vizuri Consulting">ig</a>
+          <a href="https://www.linkedin.com/in/usemi-vizuri-consulting-192310303" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Usemi Vizuri Consulting">in</a>
+          <a href="https://www.threads.com/@uv_consulting" target="_blank" rel="noopener noreferrer" aria-label="Threads de Usemi Vizuri Consulting">th</a>
+        </div>
+      </div>
+
+      <div class="footer-contact">
+        <h2>Contact</h2>
+        <ul>
+          <li><span>Email</span><a href="mailto:usemivizuriconsulting@gmail.com">usemivizuriconsulting@gmail.com</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/243848392035" target="_blank" rel="noopener">+243 848 392 035</a></li>
+          <li><span>Adresse</span><strong>#</strong></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer">@uv_consulting</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h2>Liens utiles</h2>
+        <a href="index.html">Accueil</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="services.html">Services</a>
+        <a href="approche.html">Approche</a>
+        <a href="yebela.html">Yebela</a>
+        <a href="realisations.html">Réalisations</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year"></span> Usemi Vizuri Consulting. Tous droits réservés.</p>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="back-to-top" href="#top" aria-label="Retour en haut">↑</a>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
