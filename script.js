@@ -38,11 +38,13 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
 const clientTrack = document.querySelector('.client-track');
-document.querySelector('.client-arrow.prev').addEventListener('click', () => {
-  clientTrack.scrollBy({ left: -clientTrack.clientWidth * 0.7, behavior: 'smooth' });
+const previousClientButton = document.querySelector('.client-arrow.prev');
+const nextClientButton = document.querySelector('.client-arrow.next');
+previousClientButton?.addEventListener('click', () => {
+  clientTrack?.scrollBy({ left: -clientTrack.clientWidth * 0.7, behavior: 'smooth' });
 });
-document.querySelector('.client-arrow.next').addEventListener('click', () => {
-  clientTrack.scrollBy({ left: clientTrack.clientWidth * 0.7, behavior: 'smooth' });
+nextClientButton?.addEventListener('click', () => {
+  clientTrack?.scrollBy({ left: clientTrack.clientWidth * 0.7, behavior: 'smooth' });
 });
 
 window.addEventListener('scroll', () => {
@@ -186,4 +188,5 @@ contactForm?.addEventListener('submit', (event) => {
     });
 });
 
-document.getElementById('year').textContent = new Date().getFullYear();
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
