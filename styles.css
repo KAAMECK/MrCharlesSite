@@ -749,29 +749,22 @@ h1 em, h2 em {
   z-index: 1;
   margin: 0;
   overflow: hidden;
-  background: linear-gradient(145deg, #0a1a14, #163e2e);
+  background: var(--cream);
   opacity: 0;
   transform: translate(var(--collapse-x), var(--collapse-y)) scale(.18);
   transform-origin: center;
   transition: opacity .45s ease var(--delay), transform 1.2s cubic-bezier(.18, .9, .22, 1) var(--delay);
   will-change: transform, opacity;
 }
-.media-cookie-tile::before {
-  position: absolute;
-  inset: 4px;
-  background: radial-gradient(circle at 50% 45%, rgba(255,255,255,.11), transparent 68%);
-  content: "";
-}
+
 .media-cookie-tile img {
   position: absolute;
-  inset: 8%;
+  inset: 3px;
   z-index: 1;
-  width: 84%;
-  height: 84%;
-  border-radius: 8px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
   background: #10271e;
-  box-shadow: 0 8px 20px rgba(2, 12, 8, .2);
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   image-rendering: auto;
 }
@@ -785,11 +778,7 @@ h1 em, h2 em {
 .media-cookie .tile-6 { left: 3%; top: 41%; width: 35%; height: 47%; clip-path: polygon(0 8%, 100% 0, 85% 100%, 12% 88%); }
 .media-cookie .tile-9 { left: 29%; top: 70%; width: 43%; height: 28%; clip-path: polygon(8% 0, 92% 0, 100% 70%, 50% 100%, 0 70%); }
 .media-cookie .tile-11 { left: 62%; top: 41%; width: 35%; height: 47%; clip-path: polygon(0 0, 100% 8%, 88% 88%, 15% 100%); }
-.media-cookie .tile-2 img,
-.media-cookie .tile-3 img,
-.media-cookie .tile-7 img,
-.media-cookie .tile-8 img,
-.media-cookie .tile-10 img { inset: 11%; width: 78%; height: 78%; }
+
 .media-cookie.is-visible .media-cookie-tile { opacity: 1; transform: translate(0, 0) scale(1); }
 .media-cookie-core {
   position: absolute;
@@ -871,8 +860,7 @@ h1 em, h2 em {
   .media-flow-heading { align-items: flex-start; flex-direction: column; margin-bottom: 36px; }
   .media-cookie { width: 100%; }
   .media-cookie-disc { width: min(94vw, 650px); border-width: 4px; }
-  .media-cookie-tile img { inset: 7%; width: 86%; height: 86%; border-radius: 5px; }
-  .media-cookie .tile-2 img, .media-cookie .tile-3 img, .media-cookie .tile-7 img, .media-cookie .tile-8 img, .media-cookie .tile-10 img { inset: 9%; width: 82%; height: 82%; }
+  .media-cookie-tile img { inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); }
   .media-cookie-core { border-width: 4px; }
   .portfolio-feature-grid { grid-template-columns: 1fr; }
   .portfolio-feature-card, .portfolio-feature-card.portrait { min-height: 520px; }
