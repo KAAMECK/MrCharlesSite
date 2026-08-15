@@ -160,7 +160,7 @@ button, input { font: inherit; }
   align-items: center;
   isolation: isolate;
   overflow: hidden;
-  background: var(--black) url("assets/uv-accueil.png") 74% 38% / cover no-repeat;
+  background: var(--black);
   color: var(--white);
 }
 
@@ -319,7 +319,7 @@ h1 em, h2 em {
 .about-visual {
   position: relative;
   min-height: 590px;
-  background: var(--black) url("assets/collaboration-07.png") center / cover no-repeat;
+  background: var(--black) url("assets/media/photos/IMG-20260814-WA0048_traitee.png") center / cover no-repeat;
   box-shadow: var(--shadow);
 }
 .about-visual::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,20,14,.52), transparent 58%); }
@@ -387,13 +387,6 @@ h1 em, h2 em {
 .client-card:hover::before { background: linear-gradient(180deg, rgba(7,91,67,.1), rgba(3,13,10,.95)); }
 .client-card span { font-family: "Playfair Display", Georgia, serif; font-size: 1.38rem; font-weight: 700; line-height: 1.2; }
 .client-card strong { color: #a6e5ca; font-size: .62rem; letter-spacing: .09em; text-transform: uppercase; }
-.client-card-one { background-image: url("assets/collaboration-01.png"); }
-.client-card-two { background-image: url("assets/collaboration-02.png"); }
-.client-card-three { background-image: url("assets/collaboration-03.png"); }
-.client-card-four { background-image: url("assets/collaboration-04.png"); }
-.client-card-five { background-image: url("assets/collaboration-05.png"); }
-.client-card-six { background-image: url("assets/collaboration-06.png"); }
-.client-card-seven { background-image: url("assets/collaboration-07.png"); }
 .client-arrow { width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--green); cursor: pointer; transition: background .2s, color .2s; }
 .client-arrow:hover { background: var(--green); color: var(--white); }
 
@@ -607,7 +600,7 @@ h1 em, h2 em {
   padding: 150px 0 82px;
   background:
     linear-gradient(90deg, rgba(3, 13, 10, .96), rgba(3, 13, 10, .55)),
-    var(--page-image, url("assets/uv-accueil.png")) center / cover no-repeat;
+    var(--page-image, url("assets/media/photos/IMG-20260814-WA0048_traitee.png")) center / cover no-repeat;
   color: var(--white);
 }
 .page-hero::after {
@@ -756,35 +749,67 @@ h1 em, h2 em {
 .media-flow-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 50px; }
 .media-flow-heading h2 { max-width: 820px; margin: 0; color: var(--ink); font-size: clamp(2.3rem, 4.4vw, 4.5rem); line-height: 1.03; letter-spacing: -.045em; }
 .text-link { flex: 0 0 auto; padding-bottom: 6px; border-bottom: 1px solid var(--green); color: var(--green); font-size: .69rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.media-marquee { width: 100%; overflow: hidden; }
-.media-marquee-track { display: flex; width: max-content; gap: 18px; animation: media-circulation 48s linear infinite; }
-.media-marquee-copy { display: contents; }
-.media-marquee:hover .media-marquee-track, .media-marquee:focus-within .media-marquee-track { animation-play-state: paused; }
-.media-marquee figure {
-  position: relative;
-  width: clamp(245px, 28vw, 410px);
-  aspect-ratio: .82;
-  flex: 0 0 auto;
+.media-fan { position: relative; width: 100%; min-height: 690px; overflow: hidden; }
+.media-fan-stage { position: relative; width: min(1180px, 100%); height: 680px; margin: 0 auto; }
+.media-fan-stage figure {
+  --fan-angle: 0deg;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 1;
+  width: clamp(150px, 18vw, 220px);
+  height: clamp(410px, 47vw, 570px);
   margin: 0;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,.28);
   background: #0b1712;
+  box-shadow: 0 24px 65px rgba(2,12,8,.24);
+  transform: translateX(-50%) rotate(0deg);
+  transform-origin: center 90%;
+  backface-visibility: hidden;
+  animation: media-fan-motion 8s cubic-bezier(.4, 0, .2, 1) infinite;
 }
-.media-marquee img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-.media-marquee figure:hover img { transform: scale(1.035); }
-.media-marquee figcaption {
+.media-fan-stage figure:nth-child(1) { --fan-angle: -65deg; z-index: 1; }
+.media-fan-stage figure:nth-child(2) { --fan-angle: -40deg; z-index: 2; }
+.media-fan-stage figure:nth-child(3) { --fan-angle: -15deg; z-index: 3; }
+.media-fan-stage figure:nth-child(4) { --fan-angle: 15deg; z-index: 4; }
+.media-fan-stage figure:nth-child(5) { --fan-angle: 40deg; z-index: 5; }
+.media-fan-stage figure:nth-child(6) { --fan-angle: 65deg; z-index: 6; }
+.media-fan-stage img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
+.media-fan-stage figure:hover img { transform: scale(1.045); }
+.media-fan-stage figcaption {
   position: absolute;
-  left: 18px;
-  bottom: 18px;
-  padding: 9px 12px;
-  background: rgba(2,12,8,.78);
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 9px 8px;
+  background: rgba(2,12,8,.82);
   color: var(--white);
-  font-size: .62rem;
+  font-size: .58rem;
   font-weight: 800;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
+  text-align: center;
   text-transform: uppercase;
   backdrop-filter: blur(8px);
 }
-@keyframes media-circulation { to { transform: translateX(calc(-50% - 9px)); } }
+.media-fan-pivot {
+  position: absolute;
+  left: 50%;
+  top: min(500px, 42vw);
+  z-index: 10;
+  width: 22px;
+  height: 22px;
+  border: 5px solid var(--green);
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(2,12,8,.28);
+  transform: translate(-50%, -50%);
+}
+.media-fan:hover figure, .media-fan:focus-within figure { animation-play-state: paused; }
+@keyframes media-fan-motion {
+  0%, 10%, 90%, 100% { transform: translateX(-50%) rotate(0deg); }
+  30%, 70% { transform: translateX(-50%) rotate(var(--fan-angle)); }
+}
 
 .client-card-one { background-image: url("assets/media/photos/IMG-20260814-WA0048_traitee.png"); }
 .client-card-two { background-image: url("assets/media/photos/IMG-20260814-WA0050_traitee.png"); }
@@ -843,7 +868,16 @@ h1 em, h2 em {
   .brand-film-copy { justify-content: flex-end; padding-block: 70px 108px; }
   .brand-film-overlay { background: linear-gradient(0deg, rgba(2,12,8,.92), rgba(2,12,8,.18) 76%); }
   .media-flow-heading { align-items: flex-start; flex-direction: column; margin-bottom: 36px; }
-  .media-marquee figure { width: 74vw; }
+  .media-fan { min-height: 470px; }
+  .media-fan-stage { height: 460px; }
+  .media-fan-stage figure { width: 122px; height: 350px; }
+  .media-fan-stage figure:nth-child(1) { --fan-angle: -56deg; }
+  .media-fan-stage figure:nth-child(2) { --fan-angle: -34deg; }
+  .media-fan-stage figure:nth-child(3) { --fan-angle: -12deg; }
+  .media-fan-stage figure:nth-child(4) { --fan-angle: 12deg; }
+  .media-fan-stage figure:nth-child(5) { --fan-angle: 34deg; }
+  .media-fan-stage figure:nth-child(6) { --fan-angle: 56deg; }
+  .media-fan-pivot { top: 315px; }
   .portfolio-feature-grid { grid-template-columns: 1fr; }
   .portfolio-feature-card, .portfolio-feature-card.portrait { min-height: 520px; }
   .portfolio-category-heading { align-items: flex-start; flex-direction: column; }
@@ -854,6 +888,8 @@ h1 em, h2 em {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .media-marquee-track { animation: none; transform: none; }
-  .media-marquee { overflow-x: auto; }
+  .media-fan { min-height: 440px; overflow-x: auto; }
+  .media-fan-stage { width: max-content; height: auto; display: flex; gap: 14px; padding: 0 15px 18px; }
+  .media-fan-stage figure { position: relative; left: auto; top: auto; width: 72vw; height: 420px; flex: 0 0 auto; animation: none; transform: none; }
+  .media-fan-pivot { display: none; }
 }
