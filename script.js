@@ -227,18 +227,3 @@ document.querySelectorAll('[data-gallery]').forEach((gallery) => {
     startRotation();
   }
 });
-
-const brandFilmVideo = document.getElementById('brand-film-video');
-const brandFilmSoundButton = document.getElementById('video-sound-toggle');
-brandFilmSoundButton?.addEventListener('click', () => {
-  if (!brandFilmVideo) return;
-  brandFilmVideo.muted = !brandFilmVideo.muted;
-  brandFilmSoundButton.setAttribute('aria-pressed', String(!brandFilmVideo.muted));
-  brandFilmSoundButton.textContent = brandFilmVideo.muted ? 'Activer le son' : 'Couper le son';
-  if (brandFilmVideo.paused) brandFilmVideo.play().catch(() => {});
-});
-
-if (brandFilmVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  brandFilmVideo.pause();
-  brandFilmVideo.removeAttribute('autoplay');
-}
