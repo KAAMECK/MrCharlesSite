@@ -43,19 +43,38 @@
   <main id="contenu">
     <section class="hero" id="accueil" aria-labelledby="hero-title">
       <div class="hero-shade"></div>
-      <div class="container hero-inner">
-        <p class="eyebrow light">Communication • Influence • Prise de parole</p>
-        <h1 id="hero-title">Une communication structurée.<br><em>Une influence qui compte.</em></h1>
-        <p class="hero-lead">Nous accompagnons les entreprises, institutions, marques et leaders afin de renforcer leur visibilité, affirmer leur positionnement et transformer leur communication en levier de crédibilité, d’influence et d’opportunités.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="contact.html">Construisons votre stratégie</a>
-          <a class="button button-ghost" href="services.html">Découvrir nos services</a>
+      <div class="container hero-layout">
+        <div class="hero-inner">
+          <p class="eyebrow light">Communication • Influence • Prise de parole</p>
+          <h1 id="hero-title">Une communication structurée.<br><em>Une influence qui compte.</em></h1>
+          <p class="hero-lead">Nous accompagnons les entreprises, institutions, marques et leaders afin de renforcer leur visibilité, affirmer leur positionnement et transformer leur communication en levier de crédibilité, d’influence et d’opportunités.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="contact.html">Construisons votre stratégie</a>
+            <a class="button button-ghost" href="services.html">Découvrir nos services</a>
+          </div>
         </div>
+        <figure class="hero-portrait">
+          <img src="assets/media/photos/IMG-20260814-WA0086_traitee.png" alt="Un intervenant Usemi Vizuri prend la parole lors d'une rencontre" fetchpriority="high">
+          <figcaption><span>Leadership</span><strong>Une voix qui inspire et mobilise.</strong></figcaption>
+        </figure>
       </div>
       <a class="scroll-cue" href="#services" aria-label="Découvrir la suite">
         <span>Découvrir</span>
         <i></i>
       </a>
+    </section>
+
+    <section class="brand-film" aria-labelledby="brand-film-title">
+      <video class="brand-film-media" id="brand-film-video" autoplay muted loop playsinline controls preload="metadata" poster="assets/media/photos/IMG-20260814-WA0048_traitee.png">
+        <source src="assets/media/usemi-vizuri-en-mouvement.mp4" type="video/mp4">
+        Votre navigateur ne prend pas en charge la lecture de cette vidéo.
+      </video>
+      <div class="brand-film-overlay"></div>
+      <div class="container brand-film-copy reveal">
+        <p class="eyebrow light">Usemi Vizuri en mouvement</p>
+        <h2 id="brand-film-title">Les idées prennent vie<br><em>quand elles circulent.</em></h2>
+        <button class="video-sound-toggle" id="video-sound-toggle" type="button" aria-controls="brand-film-video" aria-pressed="false">Activer le son</button>
+      </div>
     </section>
 
     <section class="services section" id="services" aria-labelledby="services-title">
@@ -136,6 +155,34 @@
       </div>
     </section>
 
+    <section class="media-flow section" aria-labelledby="media-flow-title">
+      <div class="container media-flow-heading reveal">
+        <div>
+          <p class="eyebrow">Moments d'impact</p>
+          <h2 id="media-flow-title">Des rencontres, des idées,<br><em>une communauté en mouvement.</em></h2>
+        </div>
+        <a class="text-link" href="realisations.html">Explorer toutes les réalisations →</a>
+      </div>
+      <div class="media-marquee reveal" aria-label="Aperçu animé de nos activités">
+        <div class="media-marquee-track">
+          <figure><img src="assets/media/photos/IMG-20260814-WA0048_traitee.png" alt="Signature d'un partenariat de communication" loading="lazy"><figcaption>Accompagnement</figcaption></figure>
+          <figure><img src="assets/media/photos/IMG-20260814-WA0050_traitee.png" alt="Participants à une rencontre professionnelle" loading="lazy"><figcaption>Communauté</figcaption></figure>
+          <figure><img src="assets/media/photos/IMG-20260814-WA0053_traitee.png" alt="Invités réunis lors d'un événement" loading="lazy"><figcaption>Événement</figcaption></figure>
+          <figure><img src="assets/media/photos/IMG-20260814-WA0066_traitee.png" alt="Portrait d'un jeune leader" loading="lazy"><figcaption>Leadership</figcaption></figure>
+          <figure><img src="assets/media/photos/IMG-20260814-WA0078_traitee.png" alt="Temps fort d'une activité Usemi Vizuri" loading="lazy"><figcaption>Influence</figcaption></figure>
+          <figure><img src="assets/media/photos/IMG-20260814-WA0084_traitee.png" alt="Échange lors d'une prise de parole" loading="lazy"><figcaption>Prise de parole</figcaption></figure>
+          <div class="media-marquee-copy" aria-hidden="true">
+            <figure><img src="assets/media/photos/IMG-20260814-WA0048_traitee.png" alt="" loading="lazy"><figcaption>Accompagnement</figcaption></figure>
+            <figure><img src="assets/media/photos/IMG-20260814-WA0050_traitee.png" alt="" loading="lazy"><figcaption>Communauté</figcaption></figure>
+            <figure><img src="assets/media/photos/IMG-20260814-WA0053_traitee.png" alt="" loading="lazy"><figcaption>Événement</figcaption></figure>
+            <figure><img src="assets/media/photos/IMG-20260814-WA0066_traitee.png" alt="" loading="lazy"><figcaption>Leadership</figcaption></figure>
+            <figure><img src="assets/media/photos/IMG-20260814-WA0078_traitee.png" alt="" loading="lazy"><figcaption>Influence</figcaption></figure>
+            <figure><img src="assets/media/photos/IMG-20260814-WA0084_traitee.png" alt="" loading="lazy"><figcaption>Prise de parole</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="yebela section" id="yebela" aria-labelledby="yebela-title">
       <div class="container yebela-grid">
         <div class="yebela-intro reveal">
@@ -168,13 +215,13 @@
         <div class="client-shell reveal">
           <button class="client-arrow prev" type="button" aria-label="Clients précédents">←</button>
           <div class="client-track" tabindex="0" aria-label="Aperçu des réalisations publiées sur Instagram">
-            <a class="client-card client-card-one" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Communication d’influence</span><strong>Voir sur Instagram ↗</strong></a>
-            <a class="client-card client-card-two" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Formations & coaching</span><strong>Voir sur Instagram ↗</strong></a>
-            <a class="client-card client-card-three" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Programme YEBELA</span><strong>Voir sur Instagram ↗</strong></a>
-            <a class="client-card client-card-four" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Événements & rencontres</span><strong>Voir sur Instagram ↗</strong></a>
-            <a class="client-card client-card-five" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Contenus digitaux</span><strong>Voir sur Instagram ↗</strong></a>
-            <a class="client-card client-card-six" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Accompagnement de marque</span><strong>Voir sur Instagram ↗</strong></a>
-            <a class="client-card client-card-seven" href="https://www.instagram.com/uv_consulting/" target="_blank" rel="noopener noreferrer"><span>Stratégie de présence digitale</span><strong>Voir sur Instagram ↗</strong></a>
+            <a class="client-card client-card-one" href="realisations.html"><span>Communication d’influence</span><strong>Découvrir le projet →</strong></a>
+            <a class="client-card client-card-two" href="realisations.html"><span>Formations & coaching</span><strong>Découvrir le projet →</strong></a>
+            <a class="client-card client-card-three" href="realisations.html"><span>Programme YEBELA</span><strong>Découvrir le projet →</strong></a>
+            <a class="client-card client-card-four" href="realisations.html"><span>Événements & rencontres</span><strong>Découvrir le projet →</strong></a>
+            <a class="client-card client-card-five" href="realisations.html"><span>Contenus digitaux</span><strong>Découvrir le projet →</strong></a>
+            <a class="client-card client-card-six" href="realisations.html"><span>Accompagnement de marque</span><strong>Découvrir le projet →</strong></a>
+            <a class="client-card client-card-seven" href="realisations.html"><span>Stratégie de présence digitale</span><strong>Découvrir le projet →</strong></a>
           </div>
           <button class="client-arrow next" type="button" aria-label="Clients suivants">→</button>
         </div>

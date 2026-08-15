@@ -190,3 +190,55 @@ contactForm?.addEventListener('submit', (event) => {
 
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
+
+// Galeries de la photothèque : défilement tactile, clavier et circulation douce.
+document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+  const track = gallery.querySelector('.media-gallery-track');
+  const previousButton = gallery.querySelector('[data-gallery-prev]');
+  const nextButton = gallery.querySelector('[data-gallery-next]');
+  if (!track) return;
+
+  const moveGallery = (direction) => {
+    const distance = Math.min(track.clientWidth * 0.82, 560);
+    track.scrollBy({ left: distance * direction, behavior: 'smooth' });
+  };
+
+  previousButton?.addEventListener('click', () => moveGallery(-1));
+  nextButton?.addEventListener('click', () => moveGallery(1));
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let rotationId;
+    const startRotation = () => {
+      window.clearInterval(rotationId);
+      rotationId = window.setInterval(() => {
+        const reachedEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 12;
+        if (reachedEnd) track.scrollTo({ left: 0, behavior: 'smooth' });
+        else moveGallery(1);
+      }, 6500);
+    };
+    const stopRotation = () => window.clearInterval(rotationId);
+
+    gallery.addEventListener('pointerenter', stopRotation);
+    gallery.addEventListener('pointerleave', startRotation);
+    gallery.addEventListener('focusin', stopRotation);
+    gallery.addEventListener('focusout', (event) => {
+      if (!gallery.contains(event.relatedTarget)) startRotation();
+    });
+    startRotation();
+  }
+});
+
+const brandFilmVideo = document.getElementById('brand-film-video');
+const brandFilmSoundButton = document.getElementById('video-sound-toggle');
+brandFilmSoundButton?.addEventListener('click', () => {
+  if (!brandFilmVideo) return;
+  brandFilmVideo.muted = !brandFilmVideo.muted;
+  brandFilmSoundButton.setAttribute('aria-pressed', String(!brandFilmVideo.muted));
+  brandFilmSoundButton.textContent = brandFilmVideo.muted ? 'Activer le son' : 'Couper le son';
+  if (brandFilmVideo.paused) brandFilmVideo.play().catch(() => {});
+});
+
+if (brandFilmVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  brandFilmVideo.pause();
+  brandFilmVideo.removeAttribute('autoplay');
+}
