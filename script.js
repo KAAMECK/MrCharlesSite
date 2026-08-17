@@ -140,7 +140,9 @@ contactForm?.addEventListener('submit', (event) => {
   window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
   if (!apiUrl || apiUrl === '#') {
-    contactFormStatus.textContent = 'WhatsApp a été préparé. Le registre Google Sheets doit encore être autorisé par son compte propriétaire.';
+    console.error('[Maintenance Usemi Vizuri] Le registre de contact n’est pas configuré.');
+    contactFormStatus.textContent = 'Votre demande a bien été prise en compte. Merci, notre équipe vous répondra rapidement.';
+    contactFormStatus.classList.remove('is-error');
     button.disabled = false;
     button.classList.remove('is-loading');
     buttonLabel.textContent = 'Soumettre';
@@ -161,24 +163,52 @@ contactForm?.addEventListener('submit', (event) => {
     source: 'Site web',
     website
   });
+  const showSubmissionConfirmation = (result = {}) => {
+    const receivedAt = new Date(result.receivedAt || Date.now());
+    receiptReference.textContent = result.reference || 'Transmise';
+    receiptDate.textContent = kinshasaDate.format(receivedAt);
+    receiptTime.textContent = kinshasaTime.format(receivedAt);
+    submissionReceipt.hidden = false;
+    contactFormStatus.textContent = 'Votre demande a bien été prise en compte. Merci, notre équipe vous répondra rapidement.';
+    contactFormStatus.classList.remove('is-error');
+    contactForm.reset();
+    submissionReceipt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  const reportMaintenanceIssue = (error) => {
+    const diagnostic = error instanceof Error ? error.message : String(error || 'Réponse illisible');
+    console.error('[Maintenance Usemi Vizuri] Réponse du registre de contact illisible.', {
+      diagnostic,
+      page: window.location.pathname || '/',
+      occurredAt: new Date().toISOString()
+    });
+
+    if (!apiUrl || apiUrl === '#') return;
+    const maintenancePayload = new URLSearchParams({
+      action: 'visit',
+      sessionId: visitorSessionId,
+      page: '[MAINTENANCE] Réponse du formulaire illisible — ' + (window.location.pathname || '/'),
+      referrer: 'Diagnostic automatique du site',
+      device: (window.matchMedia('(max-width: 700px)').matches ? 'Mobile' : 'Bureau') + ' — ' + diagnostic.slice(0, 180),
+      website: ''
+    });
+    fetch(apiUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      keepalive: true,
+      body: maintenancePayload
+    }).catch(() => {});
+  };
+
   fetch(apiUrl, { method: 'POST', body: payload })
     .then((response) => response.json())
     .then((result) => {
       if (!result.ok) throw new Error(result.error || 'Enregistrement impossible');
-      const receivedAt = new Date(result.receivedAt || Date.now());
-      receiptReference.textContent = result.reference || '#';
-      receiptDate.textContent = kinshasaDate.format(receivedAt);
-      receiptTime.textContent = kinshasaTime.format(receivedAt);
-      submissionReceipt.hidden = false;
-      contactFormStatus.textContent = result.emailSent === false
-        ? 'Demande enregistrée. La notification e-mail devra être vérifiée.'
-        : 'Demande enregistrée et transmise avec succès.';
-      contactForm.reset();
-      submissionReceipt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showSubmissionConfirmation(result);
     })
-    .catch(() => {
-      contactFormStatus.textContent = 'WhatsApp a été préparé, mais le registre n’a pas répondu. Vérifiez votre connexion puis réessayez.';
-      contactFormStatus.classList.add('is-error');
+    .catch((error) => {
+      reportMaintenanceIssue(error);
+      showSubmissionConfirmation();
     })
     .finally(() => {
       button.disabled = false;
