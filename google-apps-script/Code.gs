@@ -42,6 +42,10 @@ function doPost(event) {
       return jsonResponse_({ ok: true, tracked: "visit", receivedAt: now.toISOString() });
     }
 
+    if (action === "yebela") {
+      logActivity_(spreadsheet, now, "Réservation YEBELA", sessionId, page, referrer, "WhatsApp ouvert", device);
+      return jsonResponse_({ ok: true, tracked: "yebela", receivedAt: now.toISOString() });
+    }
     if (action !== "contact") {
       return jsonResponse_({ ok: false, error: "Action non reconnue." });
     }

@@ -1,0 +1,63 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06150F"/>
+      <stop offset="0.55" stop-color="#0C2F27"/>
+      <stop offset="1" stop-color="#02140E"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(410 240) rotate(45) scale(640 500)">
+      <stop stop-color="#A5E8C3" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#A5E8C3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="260" y1="170" x2="1280" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E5FFF2"/>
+      <stop offset="0.5" stop-color="#8EE3BB"/>
+      <stop offset="1" stop-color="#2DBD8B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg1)"/>
+  <rect width="1600" height="1000" fill="url(#glow1)"/>
+
+  <g opacity="0.25">
+    <circle cx="1340" cy="220" r="180" fill="#93E8C2"/>
+    <circle cx="200" cy="780" r="220" fill="#0F5B49"/>
+  </g>
+
+  <rect x="102" y="108" width="1396" height="784" rx="32" fill="rgba(8,21,17,0.34)" stroke="rgba(255,255,255,0.14)"/>
+
+  <g opacity="0.95">
+    <circle cx="390" cy="460" r="115" fill="#0E2F27"/>
+    <circle cx="390" cy="346" r="70" fill="#E2F5EB"/>
+    <rect x="315" y="420" width="150" height="180" rx="35" fill="#E2F5EB"/>
+    <rect x="355" y="534" width="70" height="115" rx="18" fill="#8BE0B2"/>
+    <path d="M517 612C517 568.863 551.863 534 595 534H742C785.137 534 820 568.863 820 612V728H517V612Z" fill="#93E8C2" fill-opacity="0.28"/>
+    <circle cx="724" cy="460" r="118" fill="#0E2F27"/>
+    <circle cx="724" cy="347" r="72" fill="#EAFEF5"/>
+    <rect x="648" y="420" width="150" height="182" rx="35" fill="#ECFFF5"/>
+    <rect x="690" y="540" width="72" height="112" rx="18" fill="#8AE3B4"/>
+    <path d="M860 612C860 568.863 894.863 534 938 534H1085C1128.14 534 1163 568.863 1163 612V728H860V612Z" fill="#A9F0CF" fill-opacity="0.2"/>
+    <circle cx="1052" cy="454" r="116" fill="#0E2F27"/>
+    <circle cx="1052" cy="340" r="68" fill="#EAFEF5"/>
+    <rect x="975" y="417" width="154" height="183" rx="35" fill="#E7FFF2"/>
+    <rect x="1018" y="538" width="72" height="112" rx="18" fill="#7AD9A9"/>
+  </g>
+
+  <g opacity="0.9">
+    <path d="M1288 270H1470V327H1288V270Z" fill="#7CD9AF" fill-opacity="0.18"/>
+    <path d="M1288 358H1512V415H1288V358Z" fill="#7CD9AF" fill-opacity="0.1"/>
+    <path d="M1288 446H1428V503H1288V446Z" fill="#7CD9AF" fill-opacity="0.1"/>
+    <circle cx="1288" cy="298" r="8" fill="#B9F2D6"/>
+    <circle cx="1470" cy="298" r="8" fill="#B9F2D6"/>
+    <circle cx="1288" cy="386" r="8" fill="#B9F2D6"/>
+    <circle cx="1512" cy="386" r="8" fill="#B9F2D6"/>
+    <circle cx="1288" cy="474" r="8" fill="#B9F2D6"/>
+    <circle cx="1428" cy="474" r="8" fill="#B9F2D6"/>
+  </g>
+
+  <g>
+    <text x="112" y="200" fill="#D9FFF1" font-family="Arial, Helvetica, sans-serif" font-size="52" letter-spacing="10" font-weight="700">MASTERCLASS</text>
+    <text x="112" y="824" fill="#ECFFF6" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800" letter-spacing="-6">YEBELA</text>
+    <text x="112" y="882" fill="#A9E9CC" font-family="Arial, Helvetica, sans-serif" font-size="34" letter-spacing="7">FORMATION • PAROLE • ACTION</text>
+  </g>
+</svg>

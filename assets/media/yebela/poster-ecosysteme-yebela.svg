@@ -1,0 +1,53 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="160" y1="110" x2="1440" y2="888" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06140E"/>
+      <stop offset="0.45" stop-color="#08362F"/>
+      <stop offset="1" stop-color="#0C1F1B"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 220) rotate(90) scale(520 520)">
+      <stop stop-color="#9AE8D4" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#9AE8D4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="network" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#E9FFF7"/>
+      <stop offset="0.5" stop-color="#8EE3C5"/>
+      <stop offset="1" stop-color="#4AC69F"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg3)"/>
+  <rect width="1600" height="1000" fill="url(#glow3)"/>
+
+  <rect x="105" y="110" width="1390" height="780" rx="32" fill="rgba(6,18,15,0.38)" stroke="rgba(255,255,255,0.12)"/>
+
+  <g opacity="0.9">
+    <path d="M390 736L610 532L840 654L1068 468L1282 732" stroke="url(#network)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M506 340L610 532L760 298L840 654L1010 286L1068 468L1240 310" stroke="url(#network)" stroke-opacity="0.7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g>
+    <circle cx="390" cy="736" r="38" fill="#D9FFF3"/>
+    <circle cx="610" cy="532" r="38" fill="#9CE0C0"/>
+    <circle cx="840" cy="654" r="38" fill="#D9FFF3"/>
+    <circle cx="1068" cy="468" r="38" fill="#9CE0C0"/>
+    <circle cx="1282" cy="732" r="38" fill="#D9FFF3"/>
+    <circle cx="506" cy="340" r="32" fill="#BCF4DE"/>
+    <circle cx="760" cy="298" r="32" fill="#D9FFF3"/>
+    <circle cx="1010" cy="286" r="32" fill="#BCF4DE"/>
+    <circle cx="1240" cy="310" r="32" fill="#D9FFF3"/>
+  </g>
+
+  <g opacity="0.92">
+    <path d="M210 344H320V450H210V344Z" fill="#DFFEF5" fill-opacity="0.12"/>
+    <path d="M1268 344H1382V450H1268V344Z" fill="#DFFEF5" fill-opacity="0.12"/>
+    <path d="M1318 708H1484V776H1318V708Z" fill="#DFFEF5" fill-opacity="0.12"/>
+    <path d="M140 708H264V776H140V708Z" fill="#DFFEF5" fill-opacity="0.12"/>
+  </g>
+
+  <g>
+    <text x="112" y="200" fill="#E3FFF4" font-family="Arial, Helvetica, sans-serif" font-size="52" letter-spacing="10" font-weight="700">ÉCOSYSTÈME</text>
+    <text x="112" y="826" fill="#F2FFF8" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800" letter-spacing="-8">YEBELA</text>
+    <text x="112" y="882" fill="#A2F0D1" font-family="Arial, Helvetica, sans-serif" font-size="34" letter-spacing="7">RÉSEAUX • OPPORTUNITÉS • ÉLAN</text>
+  </g>
+</svg>

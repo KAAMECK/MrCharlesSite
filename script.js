@@ -37,6 +37,132 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
+document.querySelectorAll('.video-card').forEach((card) => {
+  const video = card.querySelector('video');
+  const button = card.querySelector('.video-play');
+  const progress = card.querySelector('.video-progress');
+  const soundButton = card.querySelector('.video-sound');
+  const currentTimeLabel = card.querySelector('.video-current');
+  const durationLabel = card.querySelector('.video-duration');
+
+  if (!video || !button) return;
+
+  let hoverTimeout;
+  let soundWasChosen = false;
+
+  const formatTime = (value) => {
+    if (!Number.isFinite(value)) return '0:00';
+    const minutes = Math.floor(value / 60);
+    const seconds = Math.floor(value % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  };
+
+  const showControls = () => {
+    if (!video.paused) {
+      card.classList.add('is-hovered');
+      clearTimeout(hoverTimeout);
+      hoverTimeout = setTimeout(() => {
+        card.classList.remove('is-hovered');
+      }, 1800);
+    }
+  };
+
+  const hideControls = () => {
+    clearTimeout(hoverTimeout);
+    if (video.paused) {
+      card.classList.remove('is-hovered');
+    }
+  };
+
+  const updateProgress = () => {
+    if (!Number.isFinite(video.duration) || video.duration === 0) return;
+    const ratio = (video.currentTime / video.duration) * 100;
+    progress.value = ratio;
+    currentTimeLabel.textContent = formatTime(video.currentTime);
+    durationLabel.textContent = formatTime(video.duration);
+    progress.style.background = `linear-gradient(90deg, #83d8b7 0%, #83d8b7 ${ratio}%, rgba(255,255,255,.25) ${ratio}%, rgba(255,255,255,.25) 100%)`;
+  };
+
+  const setSoundState = (isMuted) => {
+    video.muted = isMuted;
+    if (soundButton) {
+      soundButton.setAttribute('aria-label', isMuted ? 'Activer le son' : 'Couper le son');
+      soundButton.setAttribute('aria-pressed', String(!isMuted));
+      soundButton.querySelector('span').textContent = isMuted ? '🔇' : '🔊';
+    }
+  };
+
+  // Les vidéos démarrent avec le son après l'action de lecture du visiteur.
+  setSoundState(false);
+
+  const setPlayingState = (isPlaying) => {
+    card.classList.toggle('is-playing', isPlaying);
+    if (!isPlaying) {
+      card.classList.remove('is-hovered');
+    }
+    button.classList.toggle('is-playing', isPlaying);
+    button.setAttribute('aria-label', isPlaying ? 'Mettre la vidéo en pause' : 'Lire la vidéo');
+    button.querySelector('span').textContent = isPlaying ? '❚❚' : '▶';
+  };
+
+  button.addEventListener('click', async () => {
+    if (video.paused) {
+      try {
+        if (!soundWasChosen) setSoundState(false);
+        await video.play();
+        setPlayingState(true);
+        showControls();
+      } catch {
+        setPlayingState(false);
+      }
+      return;
+    }
+
+    video.pause();
+    setPlayingState(false);
+  });
+
+  soundButton?.addEventListener('click', () => {
+    soundWasChosen = true;
+    const isMuted = !video.muted;
+    setSoundState(isMuted);
+    if (!video.paused && !isMuted) {
+      showControls();
+    }
+  });
+
+  progress?.addEventListener('input', (event) => {
+    if (!Number.isFinite(video.duration) || video.duration === 0) return;
+    const percentage = Number(event.target.value);
+    video.currentTime = (percentage / 100) * video.duration;
+    updateProgress();
+  });
+
+  card.addEventListener('mouseenter', () => {
+    if (!video.paused) showControls();
+  });
+
+  card.addEventListener('mouseleave', hideControls);
+  card.addEventListener('touchstart', () => {
+    if (!video.paused) showControls();
+  }, { passive: true });
+
+  card.addEventListener('pointerdown', () => {
+    if (!video.paused) showControls();
+  });
+
+  video.addEventListener('loadedmetadata', updateProgress);
+  video.addEventListener('timeupdate', updateProgress);
+  video.addEventListener('play', () => {
+    setPlayingState(true);
+    showControls();
+  });
+  video.addEventListener('pause', () => setPlayingState(false));
+  video.addEventListener('ended', () => setPlayingState(false));
+  durationLabel.textContent = formatTime(video.duration || 0);
+  setSoundState(true);
+});
+
 const clientTrack = document.querySelector('.client-track');
 const previousClientButton = document.querySelector('.client-arrow.prev');
 const nextClientButton = document.querySelector('.client-arrow.next');
@@ -96,6 +222,31 @@ if (serviceUrl && serviceUrl !== '#') {
   }
 }
 
+const trackYebelaReservation = () => {
+  if (!serviceUrl || serviceUrl === '#') return;
+
+  const reservationPayload = new URLSearchParams({
+    action: 'yebela',
+    sessionId: visitorSessionId,
+    page: window.location.pathname || '/',
+    referrer: 'CTA YEBELA — JE RÉSERVE MA PLACE',
+    device: window.matchMedia('(max-width: 700px)').matches ? 'Mobile' : 'Bureau',
+    website: ''
+  });
+
+  if (navigator.sendBeacon?.(serviceUrl, reservationPayload)) return;
+
+  fetch(serviceUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    keepalive: true,
+    body: reservationPayload
+  }).catch(() => {});
+};
+
+document.querySelectorAll('[data-yebela-reservation]').forEach((link) => {
+  link.addEventListener('click', trackYebelaReservation);
+});
 const contactForm = document.querySelector('#contact-form');
 const contactFormStatus = document.querySelector('#contact-form-status');
 const submissionReceipt = document.querySelector('#submission-receipt');

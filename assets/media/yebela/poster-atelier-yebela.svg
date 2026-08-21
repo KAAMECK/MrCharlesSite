@@ -1,0 +1,62 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="160" y1="100" x2="1440" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07130E"/>
+      <stop offset="0.45" stop-color="#12352E"/>
+      <stop offset="1" stop-color="#0A201A"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F3DFC2"/>
+      <stop offset="0.5" stop-color="#E7B96F"/>
+      <stop offset="1" stop-color="#C68C3E"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1160 190) rotate(90) scale(470 440)">
+      <stop stop-color="#F5D597" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#F5D597" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg2)"/>
+  <rect width="1600" height="1000" fill="url(#glow2)"/>
+
+  <rect x="108" y="108" width="1384" height="784" rx="32" fill="rgba(9,24,19,0.36)" stroke="rgba(255,255,255,0.12)"/>
+
+  <g opacity="0.85">
+    <path d="M1160 760C1160 719.13 1193.13 686 1234 686H1376C1416.87 686 1450 719.13 1450 760V740H1160V760Z" fill="#E7B96F" fill-opacity="0.18"/>
+    <path d="M260 750C260 707.026 295.026 672 338 672H660C702.974 672 738 707.026 738 750V770H260V750Z" fill="#E7B96F" fill-opacity="0.14"/>
+  </g>
+
+  <g>
+    <rect x="320" y="336" width="260" height="190" rx="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)"/>
+    <circle cx="370" cy="420" r="62" fill="#EDE6DD"/>
+    <path d="M343 462H393V544C393 560.569 379.569 574 363 574H350C333.431 574 320 560.569 320 544V462H343Z" fill="#EDE6DD"/>
+    <rect x="430" y="370" width="120" height="22" rx="11" fill="#F2D6A6"/>
+    <rect x="430" y="418" width="118" height="18" rx="9" fill="#F2D6A6" fill-opacity="0.78"/>
+    <rect x="430" y="456" width="86" height="18" rx="9" fill="#F2D6A6" fill-opacity="0.54"/>
+
+    <rect x="720" y="300" width="380" height="280" rx="32" fill="rgba(15,44,38,0.8)" stroke="rgba(255,255,255,0.12)"/>
+    <circle cx="820" cy="410" r="82" fill="#E9F3F0"/>
+    <path d="M786 465H858V578C858 594.569 844.569 608 828 608H813C796.431 608 783 594.569 783 578V465H786Z" fill="#E9F3F0"/>
+    <path d="M952 346H1022L1100 404V520H952V346Z" fill="url(#gold)" fill-opacity="0.85"/>
+    <path d="M1018 354L1096 404H1018V354Z" fill="#F8E8C0" fill-opacity="0.42"/>
+    <path d="M932 452C953 416 978 392 1018 392C1063 392 1087 419 1106 452" stroke="#F9F0DD" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.9">
+    <path d="M1288 278H1458V318H1288V278Z" fill="#E7B96F" fill-opacity="0.25"/>
+    <path d="M1250 340H1506V380H1250V340Z" fill="#E7B96F" fill-opacity="0.16"/>
+    <path d="M1300 404H1420V444H1300V404Z" fill="#E7B96F" fill-opacity="0.16"/>
+    <circle cx="1288" cy="298" r="8" fill="#F6D8A0"/>
+    <circle cx="1458" cy="298" r="8" fill="#F6D8A0"/>
+    <circle cx="1250" cy="360" r="8" fill="#F6D8A0"/>
+    <circle cx="1506" cy="360" r="8" fill="#F6D8A0"/>
+    <circle cx="1300" cy="424" r="8" fill="#F6D8A0"/>
+    <circle cx="1420" cy="424" r="8" fill="#F6D8A0"/>
+  </g>
+
+  <g>
+    <text x="112" y="200" fill="#F6EAD9" font-family="Arial, Helvetica, sans-serif" font-size="52" letter-spacing="10" font-weight="700">ATELIER</text>
+    <text x="112" y="826" fill="#F7F1E9" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800" letter-spacing="-8">YEBELA</text>
+    <text x="112" y="882" fill="#EAC58D" font-family="Arial, Helvetica, sans-serif" font-size="34" letter-spacing="7">PAROLE • PRATIQUE • IMPACT</text>
+  </g>
+</svg>
