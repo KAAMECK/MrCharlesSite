@@ -222,30 +222,89 @@ if (serviceUrl && serviceUrl !== '#') {
   }
 }
 
-const trackYebelaReservation = () => {
-  if (!serviceUrl || serviceUrl === '#') return;
+const yebelaRegistrationForm = document.querySelector('#yebela-registration-form');
+const yebelaRegistrationStatus = document.querySelector('#yebela-registration-status');
+const yebelaRegistrationReceipt = document.querySelector('#yebela-registration-receipt');
 
-  const reservationPayload = new URLSearchParams({
+yebelaRegistrationForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!yebelaRegistrationForm.reportValidity()) return;
+
+  const data = new FormData(yebelaRegistrationForm);
+  const nom = String(data.get('nom') || '').trim();
+  const email = String(data.get('email') || '').trim();
+  const website = String(data.get('website') || '').trim();
+  const apiUrl = serviceUrl;
+  const whatsappNumber = window.UV_CONFIG?.whatsappNumber || '243848392035';
+  const button = yebelaRegistrationForm.querySelector('button[type="submit"]');
+  const buttonLabel = button.querySelector('.submit-button-label');
+  const message = [
+    'Bonjour Usemi Vizuri Consulting,',
+    '',
+    'Je souhaite réserver ma place pour YEBELA, les 18 et 19 décembre 2026.',
+    'Nom complet : ' + nom,
+    'Adresse e-mail : ' + email
+  ].join('\n');
+  const whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
+
+  button.disabled = true;
+  button.classList.add('is-loading');
+  buttonLabel.textContent = 'Enregistrement en cours…';
+  yebelaRegistrationForm.setAttribute('aria-busy', 'true');
+  yebelaRegistrationStatus.textContent = 'Enregistrement de votre inscription et ouverture de WhatsApp…';
+  yebelaRegistrationStatus.classList.remove('is-error');
+  yebelaRegistrationReceipt.hidden = true;
+  window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+  const finish = (result = {}) => {
+    const receivedAt = new Date(result.receivedAt || Date.now());
+    yebelaRegistrationReceipt.querySelector('[data-yebela-reference]').textContent = result.reference || 'Transmise';
+    yebelaRegistrationReceipt.querySelector('[data-yebela-date]').textContent = kinshasaDate.format(receivedAt);
+    yebelaRegistrationReceipt.querySelector('[data-yebela-time]').textContent = kinshasaTime.format(receivedAt);
+    yebelaRegistrationReceipt.hidden = false;
+    yebelaRegistrationStatus.textContent = 'Votre inscription YEBELA a bien été enregistrée.';
+    yebelaRegistrationForm.reset();
+    yebelaRegistrationReceipt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  if (!apiUrl || apiUrl === '#') {
+    finish();
+    button.disabled = false;
+    button.classList.remove('is-loading');
+    buttonLabel.textContent = 'Je réserve ma place';
+    yebelaRegistrationForm.removeAttribute('aria-busy');
+    return;
+  }
+
+  const payload = new URLSearchParams({
     action: 'yebela',
+    nom,
+    email,
     sessionId: visitorSessionId,
     page: window.location.pathname || '/',
-    referrer: 'CTA YEBELA — JE RÉSERVE MA PLACE',
+    referrer: document.referrer || 'Accès direct',
     device: window.matchMedia('(max-width: 700px)').matches ? 'Mobile' : 'Bureau',
-    website: ''
+    source: 'Page d’inscription YEBELA',
+    website
   });
 
-  if (navigator.sendBeacon?.(serviceUrl, reservationPayload)) return;
-
-  fetch(serviceUrl, {
-    method: 'POST',
-    mode: 'no-cors',
-    keepalive: true,
-    body: reservationPayload
-  }).catch(() => {});
-};
-
-document.querySelectorAll('[data-yebela-reservation]').forEach((link) => {
-  link.addEventListener('click', trackYebelaReservation);
+  fetch(apiUrl, { method: 'POST', body: payload })
+    .then((response) => response.json())
+    .then((result) => {
+      if (!result.ok) throw new Error(result.error || 'Enregistrement impossible');
+      finish(result);
+    })
+    .catch((error) => {
+      console.error('[Maintenance Usemi Vizuri] Inscription YEBELA non confirmée.', error);
+      yebelaRegistrationStatus.textContent = 'WhatsApp a été préparé, mais la confirmation du registre est indisponible. Veuillez réessayer.';
+      yebelaRegistrationStatus.classList.add('is-error');
+    })
+    .finally(() => {
+      button.disabled = false;
+      button.classList.remove('is-loading');
+      buttonLabel.textContent = 'Je réserve ma place';
+      yebelaRegistrationForm.removeAttribute('aria-busy');
+    });
 });
 const contactForm = document.querySelector('#contact-form');
 const contactFormStatus = document.querySelector('#contact-form-status');

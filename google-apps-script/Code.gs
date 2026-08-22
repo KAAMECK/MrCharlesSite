@@ -3,6 +3,7 @@ const UV_CONFIG = Object.freeze({
   demandSheetName: "Demandes",
   activitySheetName: "Activité",
   newsletterSheetName: "Contacts actualités",
+  yebelaSheetName: "Inscriptions YEBELA",
   notificationEmail: "kumanehemie@gmail.com",
   timeZone: "Africa/Kinshasa",
   headerRow: 4
@@ -13,6 +14,7 @@ function autoriserEtInitialiser() {
   getOrCreateDemandSheet_(spreadsheet);
   getOrCreateActivitySheet_(spreadsheet);
   getOrCreateNewsletterSheet_(spreadsheet);
+  getOrCreateYebelaSheet_(spreadsheet);
   MailApp.getRemainingDailyQuota();
 
   return "Autorisation réussie : le registre, le Dashboard et les notifications sont prêts.";
@@ -43,8 +45,68 @@ function doPost(event) {
     }
 
     if (action === "yebela") {
-      logActivity_(spreadsheet, now, "Réservation YEBELA", sessionId, page, referrer, "WhatsApp ouvert", device);
-      return jsonResponse_({ ok: true, tracked: "yebela", receivedAt: now.toISOString() });
+      const nom = cleanValue_(data.nom, 120);
+      const email = cleanValue_(data.email, 180).toLowerCase();
+      const source = cleanValue_(data.source, 100) || "Page d’inscription YEBELA";
+
+      if (!nom || !email) {
+        return jsonResponse_({ ok: false, error: "Le nom complet et l’adresse e-mail sont obligatoires." });
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return jsonResponse_({ ok: false, error: "Adresse e-mail invalide." });
+      }
+
+      const sheet = getOrCreateYebelaSheet_(spreadsheet);
+      const reference = createYebelaReference_(now);
+      sheet.appendRow([
+        reference,
+        now,
+        safeSheetValue_(nom),
+        safeSheetValue_(email),
+        "2ᵉ édition — 18 & 19 décembre 2026",
+        safeSheetValue_(source),
+        safeSheetValue_(page),
+        safeSheetValue_(sessionId),
+        safeSheetValue_(device),
+        "WhatsApp ouvert",
+        "À notifier"
+      ]);
+
+      let emailSent = false;
+      try {
+        MailApp.sendEmail({
+          to: UV_CONFIG.notificationEmail,
+          replyTo: email,
+          name: "Site Usemi Vizuri Consulting",
+          subject: "Nouvelle inscription YEBELA " + reference + " - " + nom,
+          body: [
+            "Nouvelle inscription à YEBELA depuis le site.",
+            "",
+            "Référence : " + reference,
+            "Nom complet : " + nom,
+            "Adresse e-mail : " + email,
+            "Édition : 18 & 19 décembre 2026",
+            "Source : " + source,
+            "Page : " + page,
+            "Appareil : " + device,
+            "",
+            "Date de Kinshasa : " + Utilities.formatDate(now, UV_CONFIG.timeZone, "dd/MM/yyyy HH:mm:ss")
+          ].join("\n")
+        });
+        emailSent = true;
+        sheet.getRange(sheet.getLastRow(), 11).setValue("Envoyée à " + UV_CONFIG.notificationEmail);
+      } catch (mailError) {
+        sheet.getRange(sheet.getLastRow(), 11).setValue("Échec notification : " + mailError.message);
+      }
+
+      logActivity_(spreadsheet, now, "Inscription YEBELA", sessionId, page, referrer, "WhatsApp ouvert", device);
+      return jsonResponse_({
+        ok: true,
+        tracked: "yebela",
+        reference: reference,
+        receivedAt: now.toISOString(),
+        emailSent: emailSent
+      });
     }
     if (action !== "contact") {
       return jsonResponse_({ ok: false, error: "Action non reconnue." });
@@ -154,6 +216,26 @@ function getOrCreateNewsletterSheet_(spreadsheet) {
   return sheet;
 }
 
+function getOrCreateYebelaSheet_(spreadsheet) {
+  let sheet = spreadsheet.getSheetByName(UV_CONFIG.yebelaSheetName);
+  if (!sheet) sheet = spreadsheet.insertSheet(UV_CONFIG.yebelaSheetName);
+  const headers = [[
+    "Référence",
+    "Date / heure (Kinshasa)",
+    "Nom complet",
+    "Adresse e-mail",
+    "Édition",
+    "Source",
+    "Page d’origine",
+    "Session",
+    "Appareil",
+    "Statut WhatsApp",
+    "Notification e-mail"
+  ]];
+  ensureHeaders_(sheet, headers);
+  return sheet;
+}
+
 function ensureHeaders_(sheet, headers) {
   const currentHeader = sheet.getRange(UV_CONFIG.headerRow, 1, 1, headers[0].length).getValues()[0];
   if (!currentHeader.some(String)) {
@@ -193,6 +275,12 @@ function createReference_(date) {
   const stamp = Utilities.formatDate(date, UV_CONFIG.timeZone, "yyyyMMdd-HHmmss");
   const suffix = Math.floor(1000 + Math.random() * 9000);
   return "UVC-" + stamp + "-" + suffix;
+}
+
+function createYebelaReference_(date) {
+  const stamp = Utilities.formatDate(date, UV_CONFIG.timeZone, "yyyyMMdd-HHmmss");
+  const suffix = Math.floor(1000 + Math.random() * 9000);
+  return "YEB-" + stamp + "-" + suffix;
 }
 
 function cleanValue_(value, maxLength) {
